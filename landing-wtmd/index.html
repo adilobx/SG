@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Location Portique Détecteur</title>
+<meta name="description" content="Location de portiques détecteurs de métaux (WTMD) au Maroc pour événements, concerts, salons, mariages et sites sensibles. Livraison, installation et technicien inclus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface-2: #eef1f5;
+    --text: #0f172a;
+    --muted: #526077;
+    --line: #dde2ea;
+    --accent: #f59e0b;
+    --accent-ink: #1a1203;
+    --brand: #0b2545;
+    --brand-2: #13315c;
+    --ok: #16a34a;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1220;
+      --surface: #111a2c;
+      --surface-2: #17223a;
+      --text: #e8edf6;
+      --muted: #9aa8bf;
+      --line: #24314b;
+      --brand: #0a1a33;
+      --brand-2: #10264a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1220;
+    --surface: #111a2c;
+    --surface-2: #17223a;
+    --text: #e8edf6;
+    --muted: #9aa8bf;
+    --line: #24314b;
+    --brand: #0a1a33;
+    --brand-2: #10264a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--brand) 92%, transparent);
+    backdrop-filter: blur(8px);
+    color: #fff;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 12px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .3px; text-decoration: none; }
+  .logo-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--accent); display: grid; place-items: center; color: var(--accent-ink); }
+  .nav-links { display: flex; gap: 22px; font-size: 14px; }
+  .nav-links a { text-decoration: none; opacity: .85; }
+  .nav-links a:hover { opacity: 1; }
+  @media (max-width: 760px) { .nav-links { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 22px; border-radius: 10px; font-weight: 700; font-size: 15px;
+    text-decoration: none; border: 0; cursor: pointer; font-family: inherit;
+  }
+  .btn-accent { background: var(--accent); color: var(--accent-ink); }
+  .btn-accent:hover { filter: brightness(1.06); }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+  .btn-ghost:hover { border-color: #fff; }
+  .btn-wa { background: #25d366; color: #062b14; }
+  .btn-sm { padding: 9px 14px; font-size: 14px; }
+
+  /* Hero */
+  .hero {
+    background: radial-gradient(1200px 500px at 80% -10%, var(--brand-2), var(--brand));
+    color: #fff; padding: 64px 0 72px;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;
+    padding: 6px 12px; border-radius: 999px; background: rgba(245,158,11,.15); color: #fcd38d;
+    border: 1px solid rgba(245,158,11,.35);
+  }
+  h1 { font-size: clamp(30px, 5vw, 50px); line-height: 1.1; margin: 18px 0 16px; letter-spacing: -.5px; }
+  h1 span { color: var(--accent); }
+  .lead { font-size: 18px; color: #c9d4e6; max-width: 560px; margin: 0 0 28px; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-facts { display: flex; gap: 28px; margin-top: 34px; flex-wrap: wrap; }
+  .hero-facts b { display: block; font-size: 24px; color: #fff; }
+  .hero-facts small { color: #a9b8d0; font-size: 13px; }
+  .hero-visual {
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px; padding: 24px; display: grid; place-items: center;
+  }
+  .hero-visual svg { width: 100%; max-width: 340px; height: auto; }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; }
+  h2 { font-size: clamp(24px, 3.4vw, 36px); margin: 8px 0 12px; letter-spacing: -.3px; line-height: 1.2; }
+  .sub { color: var(--muted); max-width: 640px; margin: 0 0 36px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 760px) { .grid-3 { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .grid-4 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+  }
+  .card h3 { margin: 12px 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .ico {
+    width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent);
+  }
+  .ico svg { width: 22px; height: 22px; }
+
+  .alt { background: var(--surface-2); }
+
+  /* Specs */
+  .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 860px) { .specs-grid { grid-template-columns: 1fr; } }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+  th { width: 44%; color: var(--muted); font-weight: 600; }
+  tr:last-child th, tr:last-child td { border-bottom: 0; }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .checks li { display: flex; gap: 10px; align-items: flex-start; }
+  .checks li::before {
+    content: ""; flex: 0 0 20px; height: 20px; margin-top: 2px; border-radius: 50%;
+    background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat;
+  }
+
+  /* Pricing */
+  .plan { display: flex; flex-direction: column; gap: 14px; }
+  .plan.featured { border: 2px solid var(--accent); position: relative; }
+  .plan .tag {
+    position: absolute; top: -12px; left: 22px; background: var(--accent); color: var(--accent-ink);
+    font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+  }
+  .price { font-size: 32px; font-weight: 800; }
+  .price small { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .plan ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 6px; }
+  .plan .btn { margin-top: auto; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 18px; }
+
+  /* Steps */
+  .step-num {
+    width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff;
+    display: grid; place-items: center; font-weight: 800;
+  }
+
+  /* FAQ */
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  details + details { margin-top: 10px; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::after { content: "+"; font-size: 20px; line-height: 1; color: var(--accent); }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted); margin: 10px 0 0; }
+
+  /* Quote form */
+  .quote { background: var(--brand); color: #fff; }
+  .quote .sub { color: #b9c6db; }
+  .quote-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: start; }
+  @media (max-width: 860px) { .quote-grid { grid-template-columns: 1fr; } }
+  form { background: var(--surface); color: var(--text); border-radius: 18px; padding: 24px; display: grid; gap: 14px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+  label { font-size: 13px; font-weight: 600; color: var(--muted); display: grid; gap: 6px; }
+  input, select, textarea {
+    font: inherit; font-size: 15px; padding: 11px 12px; border-radius: 9px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--text); width: 100%;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .contact-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+  .contact-list li { display: flex; gap: 12px; align-items: center; color: #dbe4f2; }
+  .contact-list .ico { background: rgba(245,158,11,.15); }
+
+  footer { background: #06101f; color: #8c9ab3; font-size: 14px; padding: 28px 0; }
+  .foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  .wa-float {
+    position: fixed; right: 16px; bottom: 16px; z-index: 20; width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 21V7h6v14"/></svg>
+      </span>
+      SecuPortique
+    </a>
+    <nav class="nav-links">
+      <a href="#avantages">Avantages</a>
+      <a href="#specs">Caractéristiques</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#devis" class="btn btn-accent btn-sm">Devis gratuit</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill">● Disponible partout au Maroc</span>
+        <h1>Location de <span>portiques détecteurs de métaux</span> pour vos événements</h1>
+        <p class="lead">Concerts, salons, mariages, matchs, conférences ou sites sensibles&nbsp;: sécurisez vos accès avec des portiques multi-zones professionnels. Livraison, installation et technicien sur place inclus.</p>
+        <div class="hero-ctas">
+          <a href="#devis" class="btn btn-accent">Demander un devis</a>
+          <a href="https://wa.me/212600000000?text=Bonjour%2C%20je%20souhaite%20louer%20un%20portique%20d%C3%A9tecteur%20de%20m%C3%A9taux." class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <div class="hero-facts">
+          <div><b>6–33</b><small>zones de détection</small></div>
+          <div><b>24h</b><small>délai de livraison</small></div>
+          <div><b>1 jour+</b><small>durée de location</small></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Walk-through metal detector illustration -->
+        <svg viewBox="0 0 300 340" fill="none">
+          <ellipse cx="150" cy="322" rx="120" ry="10" fill="rgba(0,0,0,.25)"/>
+          <!-- left pillar -->
+          <rect x="52" y="60" width="34" height="258" rx="6" fill="#dfe6f1"/>
+          <rect x="58" y="70" width="22" height="240" rx="4" fill="#c4cfdf"/>
+          <!-- right pillar -->
+          <rect x="214" y="60" width="34" height="258" rx="6" fill="#dfe6f1"/>
+          <rect x="220" y="70" width="22" height="240" rx="4" fill="#c4cfdf"/>
+          <!-- zone LEDs -->
+          <g fill="#22c55e">
+            <rect x="64" y="90" width="10" height="26" rx="3"/><rect x="64" y="126" width="10" height="26" rx="3"/>
+            <rect x="64" y="162" width="10" height="26" rx="3" fill="#ef4444"/><rect x="64" y="198" width="10" height="26" rx="3"/>
+            <rect x="64" y="234" width="10" height="26" rx="3"/><rect x="64" y="270" width="10" height="26" rx="3"/>
+            <rect x="226" y="90" width="10" height="26" rx="3"/><rect x="226" y="126" width="10" height="26" rx="3"/>
+            <rect x="226" y="162" width="10" height="26" rx="3" fill="#ef4444"/><rect x="226" y="198" width="10" height="26" rx="3"/>
+            <rect x="226" y="234" width="10" height="26" rx="3"/><rect x="226" y="270" width="10" height="26" rx="3"/>
+          </g>
+          <!-- top control box -->
+          <rect x="40" y="22" width="220" height="48" rx="8" fill="#13315c" stroke="#f59e0b" stroke-width="2"/>
+          <rect x="112" y="32" width="76" height="28" rx="4" fill="#0b1220"/>
+          <text x="150" y="51" text-anchor="middle" font-family="monospace" font-size="14" fill="#f59e0b">0247</text>
+          <circle cx="70" cy="46" r="7" fill="#ef4444"/>
+          <circle cx="230" cy="46" r="7" fill="#22c55e"/>
+          <!-- signal waves -->
+          <g stroke="#f59e0b" stroke-width="2" opacity=".7">
+            <path d="M110 175c10-12 10-28 0-40" /><path d="M126 182c16-20 16-44 0-62" />
+            <path d="M190 175c-10-12-10-28 0-40" /><path d="M174 182c-16-20-16-44 0-62" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVANTAGES -->
+  <section id="avantages">
+    <div class="wrap">
+      <div class="eyebrow">Pourquoi nous choisir</div>
+      <h2>Une sécurité professionnelle, sans acheter le matériel</h2>
+      <p class="sub">Vous payez uniquement pour la durée de votre événement. Nous nous occupons du transport, du montage, du réglage et de l’assistance.</p>
+      <div class="grid-4">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h3>Livraison & installation</h3>
+          <p>Transport, montage et calibrage sur site par nos techniciens.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Détection précise</h3>
+          <p>Localisation multi-zones de l’objet métallique (tête, torse, jambes, gauche/droite).</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+          <h3>Agent formé en option</h3>
+          <p>Un opérateur peut rester sur place pendant toute la durée de l’événement.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Location flexible</h3>
+          <p>À la journée, au week-end, à la semaine ou au mois. Tarifs dégressifs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USAGES -->
+  <section class="alt">
+    <div class="wrap">
+      <div class="eyebrow">Utilisations</div>
+      <h2>Idéal pour tout type d’événement</h2>
+      <p class="sub">Nos portiques s’adaptent à vos flux de visiteurs, en intérieur comme en extérieur.</p>
+      <div class="grid-3">
+        <div class="card"><h3>🎤 Concerts & festivals</h3><p>Contrôle rapide de milliers de spectateurs aux entrées.</p></div>
+        <div class="card"><h3>🏟️ Matchs & stades</h3><p>Filtrage des objets interdits avant l’accès aux tribunes.</p></div>
+        <div class="card"><h3>🏢 Salons & conférences</h3><p>Accueil des VIP et des délégations en toute sécurité.</p></div>
+        <div class="card"><h3>💍 Mariages & soirées</h3><p>Sécurité discrète pour les grandes réceptions.</p></div>
+        <div class="card"><h3>🏭 Usines & entrepôts</h3><p>Prévention des vols à la sortie des zones de production.</p></div>
+        <div class="card"><h3>🏛️ Administrations & tribunaux</h3><p>Contrôle d’accès temporaire ou en remplacement de matériel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section id="specs">
+    <div class="wrap specs-grid">
+      <div>
+        <div class="eyebrow">Caractéristiques techniques</div>
+        <h2>Portique détecteur de métaux multi-zones</h2>
+        <p class="sub">Portique de sécurité professionnel à haute sensibilité, conçu pour un passage rapide et une détection fiable.</p>
+        <ul class="checks">
+          <li>Alarme sonore et visuelle, indication de la zone exacte</li>
+          <li>Réglage de sensibilité indépendant pour chaque zone</li>
+          <li>Compteur de passages et compteur d’alarmes</li>
+          <li>Immunité aux interférences (plusieurs portiques côte à côte)</li>
+          <li>Sans danger pour les porteurs de pacemaker, femmes enceintes et supports magnétiques</li>
+          <li>Batterie de secours pour les sites sans électricité</li>
+        </ul>
+      </div>
+      <table>
+        <tr><th>Zones de détection</th><td>6 / 18 / 33 zones (selon modèle)</td></tr>
+        <tr><th>Niveaux de sensibilité</th><td>Jusqu’à 255 niveaux par zone</td></tr>
+        <tr><th>Alarme</th><td>Sonore (volume réglable) + LED sur les 2 colonnes</td></tr>
+        <tr><th>Affichage</th><td>Écran LCD / LED avec compteurs</td></tr>
+        <tr><th>Alimentation</th><td>AC 220 V + batterie de secours</td></tr>
+        <tr><th>Dimensions extérieures</th><td>≈ 2 200 × 830 × 580 mm</td></tr>
+        <tr><th>Passage intérieur</th><td>≈ 2 000 × 700 mm</td></tr>
+        <tr><th>Débit</th><td>Jusqu’à 60 personnes / minute</td></tr>
+        <tr><th>Utilisation</th><td>Intérieur & extérieur couvert</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="tarifs" class="alt">
+    <div class="wrap">
+      <div class="eyebrow">Tarifs de location</div>
+      <h2>Des formules simples et transparentes</h2>
+      <p class="sub">Prix indicatifs par portique. Contactez-nous pour un devis adapté à votre nombre d’entrées et à la durée.</p>
+      <div class="grid-3">
+        <div class="card plan">
+          <h3>Journée</h3>
+          <div class="price">1 500 DH <small>/ jour</small></div>
+          <ul>
+            <li>1 portique multi-zones</li>
+            <li>Livraison & installation</li>
+            <li>Réglage de la sensibilité</li>
+          </ul>
+          <a href="#devis" class="btn btn-accent">Réserver</a>
+        </div>
+        <div class="card plan featured">
+          <span class="tag">Le plus demandé</span>
+          <h3>Pack Événement</h3>
+          <div class="price">3 500 DH <small>/ week-end</small></div>
+          <ul>
+            <li>1 portique + 1 détecteur manuel</li>
+            <li>Livraison, installation & démontage</li>
+            <li>Agent de sécurité formé sur place</li>
+            <li>Assistance technique 24h/24</li>
+          </ul>
+          <a href="#devis" class="btn btn-accent">Réserver</a>
+        </div>
+        <div class="card plan">
+          <h3>Longue durée</h3>
+          <div class="price">Sur devis <small>/ mois</small></div>
+          <ul>
+            <li>Plusieurs portiques possibles</li>
+            <li>Maintenance incluse</li>
+            <li>Remplacement en cas de panne</li>
+          </ul>
+          <a href="#devis" class="btn btn-accent">Demander un devis</a>
+        </div>
+      </div>
+      <p class="note">* Tarifs HT donnés à titre indicatif, hors frais de déplacement hors agglomération. Caution demandée à la livraison.</p>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Comment ça marche</div>
+      <h2>Réservez en 4 étapes</h2>
+      <div class="grid-4" style="margin-top:28px">
+        <div class="card"><div class="step-num">1</div><h3>Demande</h3><p>Envoyez la date, le lieu et le nombre d’entrées.</p></div>
+        <div class="card"><div class="step-num">2</div><h3>Devis</h3><p>Recevez votre devis sous 2 heures, par WhatsApp ou email.</p></div>
+        <div class="card"><div class="step-num">3</div><h3>Installation</h3><p>Nous livrons et installons le jour J, avant l’ouverture.</p></div>
+        <div class="card"><div class="step-num">4</div><h3>Récupération</h3><p>Démontage et reprise du matériel à la fin de l’événement.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="alt">
+    <div class="wrap" style="max-width:820px">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions fréquentes</h2>
+      <div style="margin-top:24px">
+        <details>
+          <summary>Dans quelles villes livrez-vous&nbsp;?</summary>
+          <p>Casablanca, Rabat, Marrakech, Tanger, Agadir, Fès et partout au Maroc sur demande (frais de déplacement selon la distance).</p>
+        </details>
+        <details>
+          <summary>Combien de temps prend l’installation&nbsp;?</summary>
+          <p>Environ 20 à 30 minutes par portique, réglages compris. Il suffit d’une prise électrique 220 V à proximité.</p>
+        </details>
+        <details>
+          <summary>Le portique peut-il fonctionner en extérieur&nbsp;?</summary>
+          <p>Oui, sous une zone couverte (tente, auvent). La batterie de secours permet de fonctionner même sans électricité pendant plusieurs heures.</p>
+        </details>
+        <details>
+          <summary>Est-ce dangereux pour la santé&nbsp;?</summary>
+          <p>Non. Le champ magnétique est faible et sans danger pour les porteurs de pacemaker, les femmes enceintes et les supports magnétiques.</p>
+        </details>
+        <details>
+          <summary>Puis-je louer plusieurs portiques&nbsp;?</summary>
+          <p>Oui. Plusieurs portiques peuvent être placés côte à côte sans interférence. Prévoyez environ 1 portique pour 1 000 à 1 500 visiteurs par heure.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section id="devis" class="quote">
+    <div class="wrap quote-grid">
+      <div>
+        <div class="eyebrow">Devis gratuit</div>
+        <h2>Sécurisez votre prochain événement</h2>
+        <p class="sub">Remplissez le formulaire&nbsp;: votre demande nous est envoyée directement sur WhatsApp et nous vous répondons rapidement.</p>
+        <ul class="contact-list">
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><a href="tel:+212600000000">+212 6 00 00 00 00</a></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg></span><a href="mailto:contact@exemple.ma">contact@exemple.ma</a></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Casablanca, Maroc</li>
+        </ul>
+      </div>
+      <form id="quote-form">
+        <div class="row">
+          <label>Nom complet<input name="nom" required placeholder="Votre nom"></label>
+          <label>Téléphone<input name="tel" type="tel" required placeholder="06 00 00 00 00"></label>
+        </div>
+        <div class="row">
+          <label>Type d’événement
+            <select name="type">
+              <option>Concert / festival</option>
+              <option>Salon / conférence</option>
+              <option>Mariage / soirée</option>
+              <option>Match / sport</option>
+              <option>Entreprise / usine</option>
+              <option>Autre</option>
+            </select>
+          </label>
+          <label>Ville<input name="ville" required placeholder="Casablanca"></label>
+        </div>
+        <div class="row">
+          <label>Date de début<input name="date" type="date" required></label>
+          <label>Nombre de jours<input name="jours" type="number" min="1" value="1"></label>
+        </div>
+        <div class="row">
+          <label>Nombre de portiques<input name="qte" type="number" min="1" value="1"></label>
+          <label>Agent sur place&nbsp;?
+            <select name="agent"><option>Oui</option><option>Non</option></select>
+          </label>
+        </div>
+        <label>Message<textarea name="msg" rows="3" placeholder="Nombre de visiteurs attendus, horaires, détails…"></textarea></label>
+        <button class="btn btn-wa" type="submit">Envoyer ma demande sur WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year"></span> SecuPortique — Location de portiques détecteurs de métaux au Maroc</span>
+    <a href="#top">Retour en haut ↑</a>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/212600000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+  // Numéro WhatsApp qui reçoit les demandes de devis (format international, sans "+")
+  var WHATSAPP_NUMBER = "212600000000";
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.getElementById("quote-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target;
+    var lines = [
+      "Bonjour, je souhaite un devis pour la location de portique détecteur de métaux :",
+      "• Nom : " + f.nom.value,
+      "• Téléphone : " + f.tel.value,
+      "• Événement : " + f.type.value,
+      "• Ville : " + f.ville.value,
+      "• Date : " + f.date.value + " (" + f.jours.value + " jour(s))",
+      "• Portiques : " + f.qte.value,
+      "• Agent sur place : " + f.agent.value
+    ];
+    if (f.msg.value.trim()) lines.push("• Message : " + f.msg.value.trim());
+    window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+  });
+</script>
+</body>
+</html>
