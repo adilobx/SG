@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Location Portique Détecteur</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Location de portiques détecteurs de métaux (WTMD) au Maroc pour événements, concerts, salons, mariages et sites sensibles. Livraison, installation et réglage par un technicien.">
 <meta property="og:title" content="Location de portiques détecteurs de métaux — Maroc">
 <meta property="og:description" content="Portiques multi-zones livrés, installés et réglés sur place. À la journée, au week-end ou au mois.">
@@ -49,13 +50,13 @@
     :root:not([data-theme="light"]) {
       --paper: #0e1418; --stone: #151c21; --ink: #eceeee; --ink-2: #c3cacf; --muted: #8d989f;
       --line: #253038; --line-strong: #34414a; --signal: #3fb489; --signal-hover: #5cc79e; --signal-soft: #15302a;
-      --on-ink: #f4f3f0; --ink-line: #2a363f;
+      --on-ink: #f4f3f0; --ink-line: #2a363f; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --paper: #0e1418; --stone: #151c21; --ink: #eceeee; --ink-2: #c3cacf; --muted: #8d989f;
     --line: #253038; --line-strong: #34414a; --signal: #3fb489; --signal-hover: #5cc79e; --signal-soft: #15302a;
-    --on-ink: #f4f3f0; --ink-line: #2a363f;
+    --on-ink: #f4f3f0; --ink-line: #2a363f; color-scheme: dark;
   }
 
   /* ---------- Base ---------- */
@@ -67,10 +68,11 @@
     font-variation-settings: "wdth" 100;
     -webkit-font-smoothing: antialiased;
   }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--paper); }
   img { display: block; max-width: 100%; height: auto; }
   a { color: inherit; text-underline-offset: 3px; }
   :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   h1, h2, h3 { margin: 0; font-weight: 700; font-variation-settings: "wdth" 82; letter-spacing: -0.015em; line-height: 1.05; }
@@ -113,7 +115,7 @@
 
   /* ---------- Header ---------- */
   .site-header {
-    position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent);
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent);
     backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line);
   }
   .nav { display: flex; align-items: center; height: 68px; gap: var(--s6); }
@@ -379,7 +381,7 @@
   @media (max-width: 760px) {
     .action-bar {
       display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--s2); position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
-      padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom)); background: var(--paper); border-top: 1px solid var(--line);
+      padding: 10px max(var(--gutter), env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px)); background: var(--paper); border-top: 1px solid var(--line);
       transition: transform .25s var(--ease);
     }
     .action-bar.hidden { transform: translateY(110%); }
@@ -388,8 +390,8 @@
   }
 
   /* ---------- Reveal ---------- */
-  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-  .js .reveal.in { opacity: 1; transform: none; }
+  .js .reveal { transform: translateY(10px); transition: transform .7s var(--ease); }
+  .js .reveal.in { transform: none; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
@@ -631,7 +633,7 @@
       <div class="quote-copy reveal">
         <span class="label">Devis gratuit</span>
         <h2>Parlez-nous de votre événement.</h2>
-        <p class="lede">Remplissez le formulaire : votre demande s’ouvre dans WhatsApp, déjà rédigée. Il ne vous reste qu’à l’envoyer.</p>
+        <p class="lede">Remplissez le formulaire : nous préparons votre message WhatsApp avec toutes les informations. Il ne vous reste qu’à l’envoyer.</p>
         <ul class="contact">
           <li><span>Téléphone</span><a href="tel:+212600000000">+212 6 00 00 00 00</a></li>
           <li><span>WhatsApp</span><a class="wa-link" href="https://wa.me/212600000000" target="_blank" rel="noopener">Écrire un message</a></li>
@@ -708,7 +710,7 @@
         <div class="form-success" id="form-success" role="status" tabindex="-1">
           <span class="check" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <h3>Votre demande est prête.</h3>
-          <p>WhatsApp s’est ouvert avec votre message déjà rédigé : il ne reste qu’à appuyer sur « Envoyer ». Si rien ne s’est ouvert, utilisez le bouton ci-dessous.</p>
+          <p>Votre message est rédigé avec toutes vos informations. Ouvrez WhatsApp et appuyez sur « Envoyer » : nous vous répondons avec un devis.</p>
           <div class="actions">
             <a class="btn btn--primary" id="wa-retry" href="#" target="_blank" rel="noopener">Ouvrir WhatsApp</a>
             <button class="btn btn--line" type="button" id="form-edit">Modifier ma demande</button>
@@ -849,7 +851,6 @@
     if (f.msg.value.trim()) lines.push("Précisions : " + f.msg.value.trim());
     var url = waUrl(lines.join("\n"));
     document.getElementById("wa-retry").href = url;
-    window.open(url, "_blank", "noopener");
     form.hidden = true;
     success.classList.add("show");
     success.focus();
